@@ -1,0 +1,72 @@
+<QuoTam>:
+    file_path_input: file_path
+    orientation: "vertical"
+
+    BoxLayout:
+        orientation: "vertical"
+        pos_hint: {'top': 1}
+
+        BoxLayout:
+
+            padding: "4dp"
+            spacing: "2dp"
+            height: "34dp"
+            size_hint_y: None
+
+            Label:
+                text: "Path: "
+                text_size: self.size
+                halign: 'left'
+                size_hint_x: 8
+
+            TextInput:
+                id: file_path
+                size_hint_x: 70
+                multiline: False
+
+            Button:
+                text: "Browse..."
+                on_release: root.show_load()
+                size_hint_x: 15
+                size_hint_y: None
+                height: "26dp"
+
+
+        BoxLayout:
+            size_hint_y: None
+            height: "50dp"
+            padding: "4dp"
+            spacing: "2dp"
+            Button:
+                size_hint_y: None
+                height: "20dp"
+                text: "Cancel"
+                on_release: root.cancel_button()
+                size_hint_x: 15
+
+            Button:
+                size_hint_y: None
+                height: "20dp"
+                text: "Search"
+                on_release: root.device_counter()
+                size_hint_x: 15
+
+<LoadDialog>:
+    BoxLayout:
+        size: root.size
+        pos: root.pos
+        orientation: "vertical"
+        FileChooserListView:
+            id: filechooser
+
+
+        BoxLayout:
+            size_hint_y: None
+            height: 30
+            Button:
+                text: "Cancel"
+                on_release: root.cancel()
+
+            Button:
+                text: "Load"
+                on_release: root.load(filechooser.path, filechooser.selection), file
